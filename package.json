@@ -7,12 +7,12 @@
     "develop": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "deploy": "npm run build && gh-pages -d build --repo https://github.com/r-wittmann/indoor-backend.git"
+    "deploy": "npm run build && gh-pages -d build --repo https://github.com/r-wittmann/indoor-frontend.git"
   },
   "author": "Rainer Wittmann <r-wittmann@gmx.net>",
   "license": "MIT",
   "homepage": "http://r-wittmann.github.io/indoor-frontend",
-  "repository": "https://github.com/r-wittmann/indoor-backend.git",
+  "repository": "https://github.com/r-wittmann/indoor-frontent.git",
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
