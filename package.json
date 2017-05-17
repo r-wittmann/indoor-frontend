@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "standard": "^10.0.2"
   }
 }
