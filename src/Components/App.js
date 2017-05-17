@@ -22,15 +22,10 @@ var styles = {
 class App extends Component {
   render () {
     return (
-      <div style={styles.App}>
-        <div style={styles.AppHeader}>
-          <img src={logo} style={styles.AppLogo} alt='logo' />
-          <h2>Welcome to React</h2>
-        </div>
-        <p style={styles.AppIntro}>
-          To get started, edit <code>src/Components/App.js</code> and save to reload.
-        </p>
+      <div>
+      This is our Frontend
       </div>
+     
     )
   }
 }
