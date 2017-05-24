@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import backendService from '../backendService'
 import logo from '../logo.svg'
 
 class App extends Component {
@@ -16,12 +17,6 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount () {
-    this.backendURL = process.env.NODE_ENV === 'development'
-      ? 'http://localhost:8080/api/'
-      : 'https://indoornav.cfapps.io/api/'
-  }
-
   handleChange (event) {
     this.setState({
       value: event.target.value
@@ -29,13 +24,10 @@ class App extends Component {
   }
 
   handleSubmit (event) {
-    fetch(this.backendURL + 'get-position?companies=' + this.state.value)
+    backendService.getPositionByCompanies(this.state.value)
       .then((response) => {
-        response.json()
-        .then((json) => {
-          this.setState({
-            position: json
-          })
+        this.setState({
+          position: response
         })
       })
     event.preventDefault()
@@ -45,7 +37,7 @@ class App extends Component {
       <div className='App' style={{textAlign: 'center'}}>
         <div className='AppHeader' style={{height: 300}}>
           <img src={logo} className='AppLogo' alt='logo' height='100px' />
-          <h2 className='caption' style={{color: 'grey', fontWeight: 'bold'}}> Welcome to Messe München. </h2>
+          <h2 className='caption' style={{color: 'grey', fontWeight: 'bold'}}>Welcome to Messe München.</h2>
           <form onSubmit={this.handleSubmit}>
             <label>
               Companies (comma seperated):
