@@ -10,20 +10,23 @@ class App extends Component {
       position: {
         x: 0,
         y: 0
-      }
+      },
+      file: '',
+      imagePreviewUrl: ''
     }
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleInputChange.bind(this)
+    this.handleSubmit = this.handleInputSubmit.bind(this)
+    this.handleImageChange = this.handleImageChange.bind(this)
   }
 
-  handleChange (event) {
+  handleInputChange (event) {
     this.setState({
       value: event.target.value
     })
   }
 
-  handleSubmit (event) {
+  handleInputSubmit (event) {
     backendService.getPositionByCompanies(this.state.value)
       .then((response) => {
         this.setState({
@@ -32,7 +35,32 @@ class App extends Component {
       })
     event.preventDefault()
   }
+
+  handleImageChange (event) {
+    event.preventDefault()
+
+    let reader = new FileReader()
+    let file = event.target.files[0]
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      })
+    }
+
+    reader.readAsDataURL(file)
+  }
+
   render () {
+    let imagePreview = null
+
+    if (this.state.imagePreviewUrl) {
+      imagePreview = (<img src={this.state.imagePreviewUrl} height={150} />)
+    } else {
+      imagePreview = (<div className='previewText'>Please select an Image for Preview</div>)
+    }
+
     return (
       <div className='App' style={{textAlign: 'center'}}>
         <div className='AppHeader' style={{height: 300}}>
@@ -52,7 +80,8 @@ class App extends Component {
         <p className='AppIntro'>
           To get started, scan the logo closest to your position.
         </p>
-        <input type='file' accept='image/*' />
+        <input type='file' accept='image/*' onChange={this.handleImageChange} />
+        <div>{imagePreview}</div>
       </div>
     )
   }
