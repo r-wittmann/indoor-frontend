@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import logo from '../logo.svg'
+import Test from './Test'
 
 var styles = {
   App: {
@@ -8,24 +9,28 @@ var styles = {
   AppLogo: {
     height: 80
   },
-  AppHeader: {
-    backgroundColor: '#222',
-    height: 150,
-    padding: 20,
-    color: 'white'
-  },
   AppIntro: {
-    fontSize: 'large'
+    fontSize: 'small'
   }
 }
+
 
 class App extends Component {
   render () {
     return (
-      <div>
-      This is our Frontend
-      </div>
+      <div className="App" style={{textAlign: 'center'}}>
+        <div className="AppHeader" style={{height: 300}}>
+      <img src={logo} className="AppLogo" alt="logo" height="100px" />
+      <h2 className="caption" style={{color: 'grey', fontWeight: 'bold'}}> Welcome to Messe München. </h2> 
+      <Test text={'Test1'} accept={true}/>     
+      <Test text={'Test2'}/>     
      
+      </div>
+      <p className="AppIntro">
+      To get started, scan the logo closest to your position. 
+      </p>
+ <input type="file" accept="image/*"></input>
+      </div>
     )
   }
 }
