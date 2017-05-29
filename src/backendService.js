@@ -30,5 +30,11 @@ class BackendService {
       .then(checkStatus)
       .then(convertResponseToJson)
   }
+
+  static getBooths () {
+    return fetch(`${baseUrl}get-booths`)
+      .then(checkStatus)
+      .then(convertResponseToJson)
+  }
 }
 export default BackendService
