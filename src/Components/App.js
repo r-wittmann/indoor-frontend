@@ -7,7 +7,9 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      value: 'QCS,SkyCell,Sinalco',
+      company1: 'QCS',
+      company2: 'SkyCell',
+      company3: 'Sinalco',
       position: {
         x: 0,
         y: 0
@@ -17,7 +19,6 @@ class App extends Component {
       booths: []
     }
 
-    this.handleChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleInputSubmit.bind(this)
     this.handleImageChange = this.handleImageChange.bind(this)
   }
@@ -27,14 +28,8 @@ class App extends Component {
       .then((response) => this.setState({ booths: response }))
   }
 
-  handleInputChange (event) {
-    this.setState({
-      value: event.target.value
-    })
-  }
-
   handleInputSubmit (event) {
-    backendService.getPositionByCompanies(this.state.value)
+    backendService.getPositionByCompanies(`${this.state.company1},${this.state.company2},${this.state.company3}`)
       .then((response) => {
         this.setState({
           position: response
@@ -75,8 +70,22 @@ class App extends Component {
           <h2 className='caption' style={{color: 'grey', fontWeight: 'bold'}}>Welcome to Messe München.</h2>
           <form onSubmit={this.handleSubmit}>
             <label>
-              Companies (comma seperated):
-              <input type='text' value={this.state.value} onChange={this.handleChange} />
+              Companies:
+              <select value={this.state.company1} onChange={(value) => this.setState({company1: value.target.value})}>
+                {this.state.booths.map((booth) =>
+                  <option key={Math.random()} value={booth.name}>{booth.name}</option>
+                )}
+              </select>
+              <select value={this.state.company2} onChange={(value) => this.setState({company2: value.target.value})}>
+                {this.state.booths.map((booth) =>
+                  <option key={Math.random()} value={booth.name}>{booth.name}</option>
+                )}
+              </select>
+              <select value={this.state.company3} onChange={(value) => this.setState({company3: value.target.value})}>
+                {this.state.booths.map((booth) =>
+                  <option key={Math.random()} value={booth.name}>{booth.name}</option>
+                )}
+              </select>
             </label>
             <input type='submit' value='Submit' />
           </form>
