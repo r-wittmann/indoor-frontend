@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import FloorPlan from './FloorPlan'
 import backendService from '../backendService'
 import logo from '../logo.svg'
 
@@ -12,12 +13,18 @@ class App extends Component {
         y: 0
       },
       file: '',
-      imagePreviewUrl: ''
+      imagePreviewUrl: '',
+      booths: []
     }
 
     this.handleChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleInputSubmit.bind(this)
     this.handleImageChange = this.handleImageChange.bind(this)
+  }
+
+  componentDidMount () {
+    backendService.getBooths()
+      .then((response) => this.setState({ booths: response }))
   }
 
   handleInputChange (event) {
@@ -56,7 +63,7 @@ class App extends Component {
     let imagePreview = null
 
     if (this.state.imagePreviewUrl) {
-      imagePreview = (<img src={this.state.imagePreviewUrl} height={150} />)
+      imagePreview = (<img src={this.state.imagePreviewUrl} height={150} alt='' />)
     } else {
       imagePreview = (<div className='previewText'>Please select an Image for Preview</div>)
     }
@@ -82,6 +89,7 @@ class App extends Component {
         </p>
         <input type='file' accept='image/*' onChange={this.handleImageChange} />
         <div>{imagePreview}</div>
+        <FloorPlan booths={this.state.booths} visitorPosition={this.state.position} />
       </div>
     )
   }
