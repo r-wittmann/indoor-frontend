@@ -7,9 +7,10 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      company1: 'QCS',
-      company2: 'SkyCell',
-      company3: 'Sinalco',
+      company1: 'QATAR\\PAIRWAYS\\PCARGO',
+      company2: 'WALLENBORN',
+      company3: 'Latam\\PAIRLINES\\PGroup',
+      highlight: [],
       position: {
         x: 0,
         y: 0
@@ -32,7 +33,8 @@ class App extends Component {
     backendService.getPositionByCompanies(`${this.state.company1},${this.state.company2},${this.state.company3}`)
       .then((response) => {
         this.setState({
-          position: response
+          position: response,
+          highlight: [this.state.company1, this.state.company2, this.state.company3]
         })
       })
     event.preventDefault()
@@ -98,7 +100,11 @@ class App extends Component {
         </p>
         <input type='file' accept='image/*' onChange={this.handleImageChange} />
         <div>{imagePreview}</div>
-        <FloorPlan booths={this.state.booths} visitorPosition={this.state.position} />
+        <FloorPlan
+          booths={this.state.booths}
+          highlight={this.state.highlight}
+          visitorPosition={this.state.position}
+        />
       </div>
     )
   }

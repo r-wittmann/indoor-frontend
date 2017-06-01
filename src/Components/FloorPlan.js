@@ -14,11 +14,10 @@ class FloorPlan extends Component {
             <g key={Math.random()}>
               <polygon
                 points={booth.coordinates}
-                // x={parseFloat(booth.coords.split(':')[3].split(';')[0].split(',')[0]) * 5}
-                // y={parseFloat(booth.coords.split(':')[3].split(';')[0].split(',')[1]) * 5}
-                // width={parseFloat(booth.width) * 5}
-                // height={parseFloat(booth.depth) * 5}
-                style={{fill: 'transparent', stroke: 'black', strokeWidth: 0.5}}
+                style={this.props.highlight.indexOf(booth.name) !== -1
+                  ? {fill: 'transparent', stroke: 'green', strokeWidth: 1}
+                  : {fill: 'transparent', stroke: 'black', strokeWidth: 0.5}
+                }
               />
             </g>
           )}
