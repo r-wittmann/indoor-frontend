@@ -5,9 +5,9 @@ class MapComponent extends Component {
   constructor () {
     super()
     this.state = {
-      lat: 51.505,
-      lng: -0.09,
-      zoom: 13
+      lat: 48.136081,
+      lng: 11.695715,
+      zoom: 16
     }
   }
 

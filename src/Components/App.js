@@ -18,7 +18,8 @@ class App extends Component {
       },
       file: '',
       imagePreviewUrl: '',
-      booths: []
+      booths: [],
+      displayMap: false
     }
 
     this.handleSubmit = this.handleInputSubmit.bind(this)
@@ -35,7 +36,8 @@ class App extends Component {
       .then((response) => {
         this.setState({
           position: response,
-          highlight: [this.state.company1, this.state.company2, this.state.company3]
+          highlight: [this.state.company1, this.state.company2, this.state.company3],
+          displayMap: true
         })
       })
     event.preventDefault()
@@ -68,39 +70,43 @@ class App extends Component {
 
     return (
       <div className='App' style={{textAlign: 'center'}}>
-        <div className='AppHeader' style={{height: 300}}>
+        <div className='AppHeader'>
           <img src={logo} className='AppLogo' alt='logo' height='100px' />
           <h2 className='caption' style={{color: 'grey', fontWeight: 'bold'}}>Welcome to Messe München.</h2>
-          <form onSubmit={this.handleSubmit}>
-            <label>
+        </div>
+        {!this.state.displayMap &&
+          <div className='inputSelect'>
+            <form onSubmit={this.handleSubmit}>
+              <label>
               Companies:
               <select value={this.state.company1} onChange={(value) => this.setState({company1: value.target.value})}>
                 {this.state.booths.map((booth) =>
                   <option key={Math.random()} value={booth.name}>{booth.name}</option>
                 )}
               </select>
-              <select value={this.state.company2} onChange={(value) => this.setState({company2: value.target.value})}>
-                {this.state.booths.map((booth) =>
-                  <option key={Math.random()} value={booth.name}>{booth.name}</option>
+                <select value={this.state.company2} onChange={(value) => this.setState({company2: value.target.value})}>
+                  {this.state.booths.map((booth) =>
+                    <option key={Math.random()} value={booth.name}>{booth.name}</option>
                 )}
-              </select>
-              <select value={this.state.company3} onChange={(value) => this.setState({company3: value.target.value})}>
-                {this.state.booths.map((booth) =>
-                  <option key={Math.random()} value={booth.name}>{booth.name}</option>
+                </select>
+                <select value={this.state.company3} onChange={(value) => this.setState({company3: value.target.value})}>
+                  {this.state.booths.map((booth) =>
+                    <option key={Math.random()} value={booth.name}>{booth.name}</option>
                 )}
-              </select>
-            </label>
-            <input type='submit' value='Submit' />
-          </form>
-          <div>
+                </select>
+              </label>
+              <input type='submit' value='Submit' />
+            </form>
+            <div>
             x: {this.state.position.x}, y: {this.state.position.y}
+            </div>
+            <p className='AppIntro'>
+              To get started, scan the logo closest to your position.
+            </p>
+            <input type='file' accept='image/*' onChange={this.handleImageChange} />
+            <div>{imagePreview}</div>
           </div>
-        </div>
-        <p className='AppIntro'>
-          To get started, scan the logo closest to your position.
-        </p>
-        <input type='file' accept='image/*' onChange={this.handleImageChange} />
-        <div>{imagePreview}</div>
+        }
         {
         /* <FloorPlan
           booths={this.state.booths}
@@ -108,7 +114,9 @@ class App extends Component {
           visitorPosition={this.state.position}
         /> */
         }
-        <MapComponent />
+        {this.state.displayMap &&
+          <MapComponent />
+        }
       </div>
     )
   }
