@@ -14,8 +14,10 @@
   "homepage": "http://r-wittmann.github.io/indoor-frontend",
   "repository": "https://github.com/r-wittmann/indoor-frontent.git",
   "dependencies": {
+    "leaflet": "^1.0.3",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-leaflet": "^1.2.1"
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
