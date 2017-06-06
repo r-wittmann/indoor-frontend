@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Map, TileLayer, Polygon } from 'react-leaflet'
 
 class MapComponent extends Component {
   constructor () {
@@ -19,11 +19,9 @@ class MapComponent extends Component {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-        <Marker position={position}>
-          <Popup>
-            <span>A pretty CSS3 popup. <br /> Easily customizable.</span>
-          </Popup>
-        </Marker>
+        {this.props.booths.map((booth) =>
+          <Polygon key={Math.random()} positions={booth.coordinates} />
+        )}
       </Map>
     )
   }

@@ -115,7 +115,10 @@ class App extends Component {
         /> */
         }
         {this.state.displayMap &&
-          <MapComponent />
+          <MapComponent
+            center={this.state.position}
+            booths={this.state.booths}
+          />
         }
       </div>
     )
