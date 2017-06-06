@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import FloorPlan from './FloorPlan'
+// import FloorPlan from './FloorPlan'
+import MapComponent from './Map'
 import backendService from '../backendService'
 import logo from '../logo.svg'
 
@@ -100,11 +101,14 @@ class App extends Component {
         </p>
         <input type='file' accept='image/*' onChange={this.handleImageChange} />
         <div>{imagePreview}</div>
-        <FloorPlan
+        {
+        /* <FloorPlan
           booths={this.state.booths}
           highlight={this.state.highlight}
           visitorPosition={this.state.position}
-        />
+        /> */
+        }
+        <MapComponent />
       </div>
     )
   }
