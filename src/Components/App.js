@@ -12,10 +12,7 @@ class App extends Component {
       company2: 'Wallenborn',
       company3: 'Latem-Airlines-Group',
       highlight: [],
-      position: {
-        x: 0,
-        y: 0
-      },
+      position: {},
       file: '',
       imagePreviewUrl: '',
       booths: [],
@@ -116,7 +113,7 @@ class App extends Component {
         }
         {this.state.displayMap &&
           <MapComponent
-            center={this.state.position}
+            position={this.state.position}
             booths={this.state.booths}
           />
         }
