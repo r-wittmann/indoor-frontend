@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Map, TileLayer, Polygon, Marker } from 'react-leaflet'
+import { Map, TileLayer, Polygon, Marker, Popup } from 'react-leaflet'
 
 class MapComponent extends Component {
   constructor () {
@@ -17,7 +17,14 @@ class MapComponent extends Component {
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
         {this.props.booths.map((booth) =>
-          <Polygon key={Math.random()} positions={booth.coordinates} />
+          <Polygon key={Math.random()} positions={booth.coordinates}>
+            <Popup>
+              <div>
+                <span><strong>{booth.name}</strong></span><br />
+                <span>Area: <strong>B1</strong></span>
+              </div>
+            </Popup>
+          </Polygon>
         )}
         <Marker position={this.props.position} />
       </Map>
