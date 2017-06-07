@@ -7,9 +7,9 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      company1: 'QATAR\\PAIRWAYS\\PCARGO',
-      company2: 'WALLENBORN',
-      company3: 'Latam\\PAIRLINES\\PGroup',
+      company1: 'Qatar-Airways-Cargo',
+      company2: 'Wallenborn',
+      company3: 'Latem-Airlines-Group',
       highlight: [],
       position: {
         x: 0,
