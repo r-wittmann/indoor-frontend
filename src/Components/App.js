@@ -91,11 +91,11 @@ class App extends Component {
             <form onSubmit={this.handleSubmit}>
               <label>
               Companies:
-              <select value={this.state.company1} onChange={(value) => this.setState({company1: value.target.value})}>
-                {this.state.booths.map((booth) =>
-                  <option key={Math.random()} value={booth.name}>{booth.name}</option>
+                <select value={this.state.company1} onChange={(value) => this.setState({company1: value.target.value})}>
+                  {this.state.booths.map((booth) =>
+                    <option key={Math.random()} value={booth.name}>{booth.name}</option>
                 )}
-              </select>
+                </select>
                 <select value={this.state.company2} onChange={(value) => this.setState({company2: value.target.value})}>
                   {this.state.booths.map((booth) =>
                     <option key={Math.random()} value={booth.name}>{booth.name}</option>
@@ -110,7 +110,7 @@ class App extends Component {
               <input type='submit' value='Submit' />
             </form>
             <div>
-            x: {this.state.position.x}, y: {this.state.position.y}
+              x: {this.state.position.x}, y: {this.state.position.y}
             </div>
             <p className='AppIntro'>
               To get started, scan the logo closest to your position.
