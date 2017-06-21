@@ -40,11 +40,27 @@ class App extends Component {
     event.preventDefault()
   }
 
+    handleCompanyPrediction (company) {
+    console.log(company)
+    backendService.getPositionByCompanies(`${company},${company},${company}`)
+      .then((response) => {
+        this.setState({
+          position: response,
+          highlight: [this.state.company1, this.state.company2, this.state.company3],
+          displayMap: true
+        })
+      })
+  }
+
+
   handleImageChange (event) {
     event.preventDefault()
 
     let reader = new FileReader()
     let file = event.target.files[0]
+
+    backendService.getCompanyPrediction(file)
+      .then((response)=>this.handleCompanyPrediction(response.Predictions[0].Tag))
 
     reader.onloadend = () => {
       this.setState({
