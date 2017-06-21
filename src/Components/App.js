@@ -40,7 +40,7 @@ class App extends Component {
     event.preventDefault()
   }
 
-    handleCompanyPrediction (company) {
+  handleCompanyPrediction (company) {
     console.log(company)
     backendService.getPositionByCompanies(`${company},${company},${company}`)
       .then((response) => {
@@ -52,7 +52,6 @@ class App extends Component {
       })
   }
 
-
   handleImageChange (event) {
     event.preventDefault()
 
@@ -60,7 +59,7 @@ class App extends Component {
     let file = event.target.files[0]
 
     backendService.getCompanyPrediction(file)
-      .then((response)=>this.handleCompanyPrediction(response.Predictions[0].Tag))
+      .then((response) => this.handleCompanyPrediction(response.Predictions[0].Tag))
 
     reader.onloadend = () => {
       this.setState({
