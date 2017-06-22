@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
+import AppHeader from './AppHeader'
 import MapComponent from './Map'
 import ImageInput from './ImageInput'
 import backendService from '../backendService'
-import logo from '../logo.svg'
 
 class App extends Component {
   constructor (props) {
@@ -41,11 +41,8 @@ class App extends Component {
 
   render () {
     return (
-      <div className='App' style={{textAlign: 'center'}}>
-        <div className='AppHeader'>
-          <img src={logo} className='AppLogo' alt='logo' height='100px' />
-          <h2 className='caption' style={{color: 'grey', fontWeight: 'bold'}}>Welcome to Messe München.</h2>
-        </div>
+      <div className='App'>
+        <AppHeader />
         {!this.state.displayMap &&
           <div className='inputSelect'>
             <p className='AppIntro'>
