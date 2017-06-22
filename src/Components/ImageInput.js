@@ -19,14 +19,21 @@ class ImageInput extends Component {
     backendService.getCompanyPrediction(file)
       .then((response) => this.props.returnName(response.Predictions[0].Tag))
 
-    reader.onloadend = () => this.props.returnPreviewUrl(reader.result)
+    reader.onloadend = () => this.setState({ imagePreviewURL: reader.result })
 
     reader.readAsDataURL(file)
   }
 
   render () {
     return (
-      <input type='file' accept='image/*' onChange={this.handleImageChange} />
+      <div style={{ height: 64, textAlign: 'center' }}>
+        <input type='file' accept='image/*' onChange={this.handleImageChange} />
+        {this.state.imagePreviewURL &&
+          <div>
+            <img src={this.state.imagePreviewURL} style={{ height: 42 }} alt='selectedPicture' />
+          </div>
+        }
+      </div>
     )
   }
 }

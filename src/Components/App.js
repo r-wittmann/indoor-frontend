@@ -14,9 +14,6 @@ class App extends Component {
       file1: '',
       file2: '',
       file3: '',
-      image1PreviewUrl: '',
-      image2PreviewUrl: '',
-      image3PreviewUrl: '',
       highlight: [],
       position: {},
       booths: [],
@@ -43,14 +40,6 @@ class App extends Component {
   }
 
   render () {
-    let imagePreview = null
-
-    if (this.state.imagePreviewUrl) {
-      imagePreview = (<img src={this.state.imagePreviewUrl} height={150} alt='' />)
-    } else {
-      imagePreview = (<div className='previewText'>Please select an Image for Preview</div>)
-    }
-
     return (
       <div className='App' style={{textAlign: 'center'}}>
         <div className='AppHeader'>
@@ -65,19 +54,15 @@ class App extends Component {
             <ImageInput
               returnFile={(file) => this.setState({ file1: file })}
               returnName={(name) => this.setState({ company1: name })}
-              returnPreviewUrl={(url) => this.setState({ image1PreviewUrl: url })}
             />
             <ImageInput
               returnFile={(file) => this.setState({ file2: file })}
               returnName={(name) => this.setState({ company2: name })}
-              returnPreviewUrl={(url) => this.setState({ image2PreviewUrl: url })}
             />
             <ImageInput
               returnFile={(file) => this.setState({ file3: file })}
               returnName={(name) => this.setState({ company3: name })}
-              returnPreviewUrl={(url) => this.setState({ image3PreviewUrl: url })}
             />
-            <div>{imagePreview}</div>
             <input
               type={'submit'}
               onClick={() => this.handleFileSubmit()}
