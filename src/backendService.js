@@ -37,8 +37,13 @@ class BackendService {
       .then(convertResponseToJson)
   }
 
+<<<<<<< Updated upstream
   static getCompanyPrediction (image) {
     return fetch('https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/5dd5e486-287b-4d29-a385-7f66fd2b6842/image?iterationId=01b3a9b2-c716-4c46-a011-f29868ef484b',
+=======
+  static getCompanyPrediction (image){
+    return fetch ('https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/5dd5e486-287b-4d29-a385-7f66fd2b6842/image?iterationId=371c51ac-f1fe-402b-826d-e183a45d51fc',
+>>>>>>> Stashed changes
       {method: 'POST',
         headers:
         { 'content-type': 'application/octet-stream',
