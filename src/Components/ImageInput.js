@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import backendService from '../backendService'
+import 'bootstrap/dist/css/bootstrap.css'
 
 class ImageInput extends Component {
   constructor (props) {
@@ -26,8 +27,16 @@ class ImageInput extends Component {
 
   render () {
     return (
+    
+
       <div style={{ height: 64, textAlign: 'center' }}>
-        <input type='file' accept='image/*' onChange={this.handleImageChange} />
+       <label htmlFor='PickFileButton'>
+       
+       <span className='glyphicon glyphicon-camera'></span>
+
+    </label>
+
+    <input id='PickFileButton' type='file' style={{display:'none'}} accept='image/*' onChange={this.handleImageChange}/>
         {this.state.imagePreviewURL &&
           <div>
             <img src={this.state.imagePreviewURL} style={{ height: 42 }} alt='selectedPicture' />
