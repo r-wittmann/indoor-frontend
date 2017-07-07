@@ -58,18 +58,14 @@ class App extends Component {
           <div className='inputSelect'>
 
 
-      <div className='row' >
-            <p className='AppIntro'>
-              To get started, take a picture of the logo on your left, right and in front of you.
-            </p>
-          </div>
 
 
 
-  
-      <div className='row' style={{height:200}}>
 
-       <div className='col-xs-4 col-md-4' style={{backgroundColor:'blue', transform:'matrix(1,-0.3,0,1,0,+20)'}}>
+      
+      <div className='row' style={{height:100, marginTop: 20}}>
+
+       <div className='col-xs-4 col-md-4' style={{backgroundColor:'#264082', transform:'matrix(1,-0.3,0,1,0,+20)'}}>
 
         <ImageInput
               returnFile={(file) => this.setState({ file1: file })}
@@ -79,7 +75,7 @@ class App extends Component {
 
 
       
-      <div className='col-xs-4 col-md-4' style={{backgroundColor:'blue'}}>
+      <div className='col-xs-4 col-md-4' style={{backgroundColor:'#264082'}}>
         <ImageInput
               returnFile={(file) => this.setState({ file2: file })}
               returnName={(name) => this.setState({ company2: name })}
@@ -89,7 +85,7 @@ class App extends Component {
 
 
       
-      <div className='col-xs-4 col-md-4' style={{backgroundColor:'blue', transform:'matrix(1,0.3,0,1,0,20)'}}>
+      <div className='col-xs-4 col-md-4' style={{backgroundColor:'#264082', transform:'matrix(1,0.3,0,1,0,20)'}}>
         <ImageInput
               returnFile={(file) => this.setState({ file3: file })}
               returnName={(name) => this.setState({ company3: name })}
@@ -97,14 +93,25 @@ class App extends Component {
       </div>
      </div>
 
+
       
 
       <div className='row'>
-        <input
+      <div className='col-xs-4 col-md-4'>
+      </div>
+       <div className='col-xs-4 col-md-4'>
+
+        <button
+        className='btn btn-primary'
           type={'submit'}
+          style={{backgroundColor:'#264082', fontColor:'white'}}
           onClick={() => this.handleFileSubmit()}
-          disabled={!this.state.company1 || !this.state.company2 || !this.state.company3}
-        />
+          disabled={!this.state.company1 || !this.state.company2 || !this.state.company3}>
+          Submit
+        </button>
+      </div>
+      <div className='col-xs-4 col-md-4'>
+      </div>
       </div>
 
 

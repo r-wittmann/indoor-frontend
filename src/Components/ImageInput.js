@@ -29,10 +29,10 @@ class ImageInput extends Component {
     return (
     
 
-      <div style={{ height: 64, textAlign: 'center' }}>
+      <div style={{ height: 64, textAlign: 'center'}}>
        <label htmlFor='PickFileButton'>
-       
-       <span className='glyphicon glyphicon-camera'></span>
+
+       <span className='glyphicon glyphicon-camera' style={{color:'white', marginTop: 20}}></span>
 
     </label>
 
