@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import backendService from '../backendService'
-import 'bootstrap/dist/css/bootstrap.css'
 
 class ImageInput extends Component {
   constructor (props) {
@@ -27,21 +26,16 @@ class ImageInput extends Component {
 
   render () {
     return (
-    
-
-      <div style={{ height: 64, textAlign: 'center'}}>
-       <label htmlFor='PickFileButton'>
-
-       <span className='glyphicon glyphicon-camera' style={{color:'white', marginTop: 20}}></span>
-
-    </label>
-
-    <input id='PickFileButton' type='file' style={{display:'none'}} accept='image/*' onChange={this.handleImageChange}/>
-        {this.state.imagePreviewURL &&
-          <div>
-            <img src={this.state.imagePreviewURL} style={{ height: 42 }} alt='selectedPicture' />
-          </div>
-        }
+      <div style={{ height: 100, textAlign: 'center', border: '2px solid #262826', borderRadius: 2 }}>
+        <label htmlFor={this.props.id} style={{ height: '100%', width: '100%', display: 'flex' }}>
+          {this.state.imagePreviewURL
+            ? <div style={{ display: 'block', margin: 'auto' }}>
+              <img src={this.state.imagePreviewURL} className='img-responsive center-block' style={{ maxHeight: '100%' }} alt='selectedPicture' />
+            </div>
+            : <span className='glyphicon glyphicon-camera' style={{display: 'block', margin: 'auto', color: '#262826', marginTop: 40}} />
+          }
+        </label>
+        <input id={this.props.id} type='file' style={{display: 'none'}} accept='image/*' onChange={this.handleImageChange} />
       </div>
     )
   }
