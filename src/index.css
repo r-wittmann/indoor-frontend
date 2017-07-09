@@ -9,6 +9,22 @@ body {
     width: 100%;
 }
 
+.modalstyle{
+	font-family:'Source Sans Pro', sans-serif;
+	color: #264082;
+	font-color: white;
+	opacity: 90%;
+}
+
+.helpimage{
+	height: 100px;
+	width: 100px;
+	background-color:'grey'; 
+	float: 'left';
+	margin: 20;
+
+}
+
 
 
 
