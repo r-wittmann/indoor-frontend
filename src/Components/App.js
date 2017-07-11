@@ -76,7 +76,7 @@ class App extends Component {
             <button
               className='btn btn-primary center-block'
               type={'submit'}
-              style={{ backgroundColor: '#264082', fontColor: 'white' }}
+              style={{ backgroundColor: '#6487CD', fontColor: 'white' }}
               onClick={() => this.handleFileSubmit()}
               disabled={!this.state.company1 || !this.state.company2 || !this.state.company3}
             >

@@ -28,12 +28,14 @@ class PopUpModal extends Component {
               <div className='col-xs-6'>
                 <img src={example1} className='img-responsive' style={{ borderRadius: 4 }} alt='bad-example' />
               </div>
-              <div className='col-xs-6 text-right'>
+              <div className='col-xs-6 text-left'>
+                <span className='glyphicon glyphicon-remove' style={{marginRight: 5, color: '#264082'}} />
                 Go closer to the logo!
               </div>
             </div>
             <div className='row' style={{ display: 'flex', alignItems: 'center' }}>
-              <div className='col-xs-6 text-left'>
+              <div className='col-xs-6 text-right'>
+                <span className='glyphicon glyphicon-ok' style={{marginRight: 5, color: '#264082'}} />
                 This is a good example!
               </div>
               <div className='col-xs-6'>
@@ -44,7 +46,8 @@ class PopUpModal extends Component {
               <div className='col-xs-6'>
                 <img src={example3} className='img-responsive' style={{ borderRadius: 4 }} alt='bad-example' />
               </div>
-              <div className='col-xs-6 text-right'>
+              <div className='col-xs-6 text-left'>
+                <span className='glyphicon glyphicon-remove' style={{marginRight: 5, color: '#264082'}} />
                 Make sure only one logo is on the picture!
               </div>
             </div>
