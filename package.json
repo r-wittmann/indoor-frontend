@@ -17,7 +17,8 @@
     "leaflet": "^1.0.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-leaflet": "^1.2.1"
+    "react-leaflet": "^1.2.1",
+    "react-modal": "^2.2.1"
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
