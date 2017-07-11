@@ -10,7 +10,6 @@ body {
 }
 
 .modalstyle{
-	font-family:'Source Sans Pro', sans-serif;
 	color: #264082;
 	font-color: white;
 	opacity: 90%;
@@ -32,7 +31,6 @@ body {
   background:linear-gradient(135deg, #264082, #6487CD);
   background-color:#264082;
   padding-bottom:120px;
-  font-family:'Source Sans Pro', sans-serif;
 }
 
 @media (max-width:767px) {

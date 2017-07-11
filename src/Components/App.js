@@ -3,10 +3,7 @@ import AppHeader from './AppHeader'
 import MapComponent from './Map'
 import ImageInput from './ImageInput'
 import backendService from '../backendService'
-import Modal from 'react-modal'
-import example1 from '../example1.png'
-import example2 from '../example2.png'
-import example3 from '../example3.png'
+import PopUpModal from './PopUpModal'
 
 class App extends Component {
   constructor (props) {
@@ -22,13 +19,10 @@ class App extends Component {
       position: {},
       booths: [],
       displayMap: false,
-      modalIsOpen: false,
+      modalIsOpen: false
     }
 
-    this.handleFileSubmit = this.handleFileSubmit.bind(this);
-    this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
-    this.closeModal = this.closeModal.bind(this)
+    this.handleFileSubmit = this.handleFileSubmit.bind(this)
   }
 
   componentDidMount () {
@@ -46,21 +40,6 @@ class App extends Component {
         })
       })
   }
-    openModal() {
-    this.setState({modalIsOpen: true});
-  }
-
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
-  }
-
-  closeModal() {
-    this.setState({modalIsOpen: false});
-  }
-
-
-
 
   render () {
     return (
@@ -97,7 +76,7 @@ class App extends Component {
             <button
               className='btn btn-primary center-block'
               type={'submit'}
-              style={{backgroundColor: '#264082', fontColor: 'white', fontFamily:'Source Sans Pro'}}
+              style={{ backgroundColor: '#264082', fontColor: 'white' }}
               onClick={() => this.handleFileSubmit()}
               disabled={!this.state.company1 || !this.state.company2 || !this.state.company3}
             >
@@ -114,80 +93,26 @@ class App extends Component {
           </div>
         }
 
-
-
-
-
-          <div 
-            className='footer' 
-            style={{height: 60, width: '100%', position: 'absolute', backgroundColor: '#6487CD', bottom: 0, textAlign: 'center'}}>
+        <div
+          className='footer'
+          style={{height: 60, width: '100%', position: 'absolute', backgroundColor: '#6487CD', bottom: 0, textAlign: 'center'}}>
           <div>
-            <button 
-              className='btn btn-primary center-block' 
-              style={{marginTop:15, fontFamily:'Source Sans Pro'}} 
-              onClick={this.openModal}>Help
+            <button
+              className='btn btn-primary center-block'
+              style={{ marginTop: 15 }}
+              onClick={() => this.setState({ modalIsOpen: true })}
+            >
+              Help
             </button>
-
-              <Modal
-                isOpen={this.state.modalIsOpen}
-                onAfterOpen={this.afterOpenModal}
-                onRequestClose={this.closeModal}
-                contentLabel="Example Modal"
-              >
-                <div className='modalstyles'>
-                  <div className='header-blue'>
-                    <h2 style={{fontFamily:'Source Sans Pro', textAlign:'center', color:'white'}}>Help</h2>
-                    <p style={{fontFamily:'Source Sans Pro', textAlign:'center', color:'white'}}>How to take the right picture:</p> 
-                  </div>
-                  <div className='row' style={{padding: 8}}>
-                    <div className='col-xs-2' 
-                      style={{height: 90, width: 150, backgroundColor:'grey', float: 'left', margin:8}}>
-                        <img 
-                          src={example1} style={{ maxHeight: 90}}/>
-                    </div>
-                    <div className='col-xs-2' style={{height: 90, width: 140, float: 'left', margin:8, fontFamily:'Source Sans Pro', textAlign:'right'}}>Go closer to the logo!</div>
-                  </div>
-
-                  <div className='row' style={{padding: 8}}>
-                    <div 
-                      className='col-xs-2' 
-                      style={{height: 90, width: 140, float: 'left', margin:8, fontFamily:'Source Sans Pro', textAlign:'left'}}>
-                        <p style={{verticalAlign: 'middle'}}>This is a good example!</p>
-                    </div>
-                    <div 
-                      className='col-xs-2' 
-                      style={{height: 90, width: 150, float: 'left', margin:8}}> 
-                        <img src={example2} style={{ maxHeight: 90}}/>
-                    </div>
-                  </div>
-                  <div className='row' style={{padding: 8}}>
-                    <div 
-                      className='col-xs-2' 
-                      style={{height: 90, width: 150, backgroundColor:'grey', float: 'left', margin:8}}>
-                        <img src={example3} style={{ maxHeight: 90}}/>
-                    </div>
-                    <div 
-                      className='col-xs-2' 
-                      style={{height: 90, width: 140, float: 'left', margin:8, fontFamily:'Source Sans Pro', textAlign:'right'}}>Make sure only one logo is on the picture!
-                    </div>
-                  </div>
-                  <div 
-                    className='row' 
-                    style={{padding: 8}} style={{bottom: 16, position: 'absolute', textAlign: 'center', width:'100%'}}>
-                      <button 
-                        className='btn btn-primary center-block' 
-                        onClick={this.closeModal}>Got it!
-                      </button>
-                  </div>
-                </div>
-              </Modal>
-            </div>
+            <PopUpModal
+              isOpen={this.state.modalIsOpen}
+              closeModal={() => this.setState({ modalIsOpen: false })}
+            />
           </div>
-       </div>
+        </div>
+      </div>
     )
-
   }
 }
-
 
 export default App
