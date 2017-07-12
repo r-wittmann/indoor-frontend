@@ -4,6 +4,7 @@ import MapComponent from './Map'
 import ImageInput from './ImageInput'
 import backendService from '../backendService'
 import PopUpModal from './PopUpModal'
+import logService from '../logService'
 
 class App extends Component {
   constructor (props) {
@@ -26,13 +27,19 @@ class App extends Component {
   }
 
   componentDidMount () {
+    logService.log('booths requested', '')
     backendService.getBooths()
-      .then((response) => this.setState({ booths: response }))
+      .then((response) => {
+        logService.log('booths received', '')
+        this.setState({ booths: response })
+      })
   }
 
   handleFileSubmit () {
+    logService.log('position calculation request sent. companies:', `${this.state.company1}, ${this.state.company2}, ${this.state.company3}`)
     backendService.getPositionByCompanies(`${this.state.company1},${this.state.company2},${this.state.company3}`)
       .then((response) => {
+        logService.log('position received:', `{lat: ${response.lat}, lng: ${response.lng}}`)
         this.setState({
           position: response,
           highlight: [this.state.company1, this.state.company2, this.state.company3],

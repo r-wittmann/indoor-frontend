@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import backendService from '../backendService'
+import logService from '../logService'
 
 class ImageInput extends Component {
   constructor (props) {
@@ -16,8 +17,13 @@ class ImageInput extends Component {
 
     this.props.returnFile(file)
 
+    logService.log('image selected or taken and sent to image recognition API:', file)
+
     backendService.getCompanyPrediction(file)
-      .then((response) => this.props.returnName(response.Predictions[0].Tag))
+      .then((response) => {
+        logService.log('image analyzed:', `{result: ${response.Predictions[0].Tag}, probability: ${response.Predictions[0].Probability}}`)
+        this.props.returnName(response.Predictions[0].Tag)
+      })
 
     reader.onloadend = () => this.setState({ imagePreviewURL: reader.result })
 
