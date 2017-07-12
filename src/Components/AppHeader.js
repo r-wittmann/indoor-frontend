@@ -22,7 +22,7 @@ class AppHeader extends Component {
             <div className='container hero'>
               <div className='row'>
                 <div className='col-lg-5 col-lg-offset-1 col-md-6 col-md-offset-0'>
-                  <h1>Welcome!</h1>
+                  <h1>FIND ME!</h1>
                   <p>To find your current location, take a picture of the logo on your left, right and in front of you. </p>
                 </div>
               </div>
