@@ -11,7 +11,7 @@ class MapComponent extends Component {
 
   render () {
     return (
-      <Map center={this.props.position} zoom={this.state.zoom}>
+      <Map center={this.props.position} zoom={this.state.zoom} maxZoom={19}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import AppHeader from './AppHeader'
 import MapComponent from './Map'
 import ImageInput from './ImageInput'
-import backendService from '../backendService'
 import PopUpModal from './PopUpModal'
+import backendService from '../backendService'
 import logService from '../logService'
 
 class App extends Component {
@@ -53,42 +53,61 @@ class App extends Component {
       <div className='container-fluid' style={{ paddingRight: 0, paddingLeft: 0 }}>
         <AppHeader showHint={!this.state.displayMap} />
         {!this.state.displayMap &&
-          <div className='inputSelect'>
-            <div className='row' style={{height: 150, margin: 10}}>
-              <div className='col-xs-4' style={{ padding: 0, paddingRight: 5, transform: 'skewY(-16deg)', transformOrigin: '100% 50%' }}>
-                <ImageInput
-                  id='imageInput1'
-                  returnFile={(file) => this.setState({ file1: file })}
-                  returnName={(name) => this.setState({ company1: name })}
-                />
-                <p className='text-center'>{this.state.company1}</p>
+          <div>
+            <div className='inputSelect'>
+              <div className='row' style={{height: 150, margin: 10, marginTop: 64}}>
+                <div className='col-xs-4' style={{ padding: 0, paddingRight: 5, transform: 'skewY(-16deg)', transformOrigin: '100% 50%' }}>
+                  <ImageInput
+                    id='imageInput1'
+                    returnFile={(file) => this.setState({ file1: file })}
+                    returnName={(name) => this.setState({ company1: name })}
+                  />
+                  <p className='text-center'>{this.state.company1}</p>
+                </div>
+                <div className='col-xs-4' style={{ padding: 0 }}>
+                  <ImageInput
+                    id='imageInput2'
+                    returnFile={(file) => this.setState({ file2: file })}
+                    returnName={(name) => this.setState({ company2: name })}
+                  />
+                  <p className='text-center'>{this.state.company2}</p>
+                </div>
+                <div className='col-xs-4' style={{ padding: 0, paddingLeft: 5, transform: 'skewY(16deg)', transformOrigin: '0% 50%' }}>
+                  <ImageInput
+                    id='imageInput3'
+                    returnFile={(file) => this.setState({ file3: file })}
+                    returnName={(name) => this.setState({ company3: name })}
+                  />
+                  <p className='text-center'>{this.state.company3}</p>
+                </div>
               </div>
-              <div className='col-xs-4' style={{ padding: 0 }}>
-                <ImageInput
-                  id='imageInput2'
-                  returnFile={(file) => this.setState({ file2: file })}
-                  returnName={(name) => this.setState({ company2: name })}
-                />
-                <p className='text-center'>{this.state.company2}</p>
-              </div>
-              <div className='col-xs-4' style={{ padding: 0, paddingLeft: 5, transform: 'skewY(16deg)', transformOrigin: '0% 50%' }}>
-                <ImageInput
-                  id='imageInput3'
-                  returnFile={(file) => this.setState({ file3: file })}
-                  returnName={(name) => this.setState({ company3: name })}
-                />
-                <p className='text-center'>{this.state.company3}</p>
-              </div>
-            </div>
-            <button
-              className='btn btn-primary center-block'
-              type={'submit'}
-              style={{ backgroundColor: '#6487CD', fontColor: 'white' }}
-              onClick={() => this.handleFileSubmit()}
-              disabled={!this.state.company1 || !this.state.company2 || !this.state.company3}
-            >
+              <button
+                className='btn btn-primary center-block'
+                type={'submit'}
+                style={{ backgroundColor: '#6487CD', fontColor: 'white' }}
+                onClick={() => this.handleFileSubmit()}
+                disabled={!this.state.company1 || !this.state.company2 || !this.state.company3}
+              >
               Submit
             </button>
+            </div>
+            <div
+              className='footer'
+              style={{height: 60, width: '100%', position: 'absolute', backgroundColor: '#6487CD', bottom: 0, textAlign: 'center'}}>
+              <div>
+                <button
+                  className='btn btn-primary center-block'
+                  style={{ marginTop: 15 }}
+                  onClick={() => this.setState({ modalIsOpen: true })}
+                >
+              Help
+            </button>
+                <PopUpModal
+                  isOpen={this.state.modalIsOpen}
+                  closeModal={() => this.setState({ modalIsOpen: false })}
+                />
+              </div>
+            </div>
           </div>
         }
         {this.state.displayMap &&
@@ -99,24 +118,6 @@ class App extends Component {
             />
           </div>
         }
-
-        <div
-          className='footer'
-          style={{height: 60, width: '100%', position: 'absolute', backgroundColor: '#6487CD', bottom: 0, textAlign: 'center'}}>
-          <div>
-            <button
-              className='btn btn-primary center-block'
-              style={{ marginTop: 15 }}
-              onClick={() => this.setState({ modalIsOpen: true })}
-            >
-              Help
-            </button>
-            <PopUpModal
-              isOpen={this.state.modalIsOpen}
-              closeModal={() => this.setState({ modalIsOpen: false })}
-            />
-          </div>
-        </div>
       </div>
     )
   }

@@ -15,5 +15,11 @@ This is a React project. To get started insert the following lines to your conso
 
 This starts the application and opens the default browser. The Application is rebuild everytime a file is updated and saved.
 
+# Deployment
+
+The frontend is deployed on GitHub-Pages making use of the gh-pages branch and the [gh-pages plugin](https://www.npmjs.com/package/gh-pages). Call ```$>npm run deploy``` to deploy the app.
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+&copy; 2017 by [dianadybok](https://github.com/dianadybok), [lottemacchiato](https://github.com/lottemacchiato), [r-wittmann](https://github.com/r-wittmann) and [yusef7](https://github.com/yusef7). All rights reserved.
