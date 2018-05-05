@@ -9,23 +9,63 @@ class ImageInput extends Component {
     this.handleImageChange = this.handleImageChange.bind(this)
   }
 
+  urltoFile (url, filename, mimeType) {
+    return (fetch(url)
+        .then((res) => res.arrayBuffer())
+        .then((buf) => new File([buf], filename, {type: mimeType}))
+    )
+  }
+
   handleImageChange (event) {
+    let self = this
     event.preventDefault()
 
     let reader = new FileReader()
+
+    reader.onloadend = () => {
+      var tempImg = new Image()
+      tempImg.src = reader.result
+
+      tempImg.onload = function () {
+        var MAX_WIDTH = 400
+        var MAX_HEIGHT = 300
+        var tempW = tempImg.width
+        var tempH = tempImg.height
+        if (tempW > tempH) {
+          if (tempW > MAX_WIDTH) {
+            tempH *= MAX_WIDTH / tempW
+            tempW = MAX_WIDTH
+          }
+        } else {
+          if (tempH > MAX_HEIGHT) {
+            tempW *= MAX_HEIGHT / tempH
+            tempH = MAX_HEIGHT
+          }
+        }
+
+        var canvas = document.createElement('canvas')
+        canvas.width = tempW
+        canvas.height = tempH
+        var ctx = canvas.getContext('2d')
+        ctx.drawImage(this, 0, 0, tempW, tempH)
+        var dataURL = canvas.toDataURL('image/jpeg')
+
+        self.setState({ imagePreviewURL: dataURL })
+
+        self.urltoFile(dataURL, 'dummyFileName.png', 'image/jpeg')
+          .then((file) => {
+            backendService.getCompanyPrediction(file)
+              .then((response) => {
+                logService.log('image analyzed:', `{result: ${response.Predictions[0].Tag}, probability: ${response.Predictions[0].Probability}}`)
+                self.props.returnName(response.Predictions[0].Tag)
+              })
+          })
+      }
+    }
+
     let file = event.target.files[0]
 
-    this.props.returnFile(file)
-
     logService.log('image selected or taken and sent to image recognition API:', file)
-
-    backendService.getCompanyPrediction(file)
-      .then((response) => {
-        logService.log('image analyzed:', `{result: ${response.Predictions[0].Tag}, probability: ${response.Predictions[0].Probability}}`)
-        this.props.returnName(response.Predictions[0].Tag)
-      })
-
-    reader.onloadend = () => this.setState({ imagePreviewURL: reader.result })
 
     reader.readAsDataURL(file)
   }

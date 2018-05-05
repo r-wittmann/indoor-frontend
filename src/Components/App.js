@@ -13,9 +13,6 @@ class App extends Component {
       company1: '',
       company2: '',
       company3: '',
-      file1: '',
-      file2: '',
-      file3: '',
       highlight: [],
       position: {},
       booths: [],
@@ -59,7 +56,6 @@ class App extends Component {
                 <div className='col-xs-4' style={{ padding: 0, paddingRight: 5, transform: 'skewY(-16deg)', transformOrigin: '100% 50%' }}>
                   <ImageInput
                     id='imageInput1'
-                    returnFile={(file) => this.setState({ file1: file })}
                     returnName={(name) => this.setState({ company1: name })}
                   />
                   <p className='text-center'>{this.state.company1}</p>
@@ -67,7 +63,6 @@ class App extends Component {
                 <div className='col-xs-4' style={{ padding: 0 }}>
                   <ImageInput
                     id='imageInput2'
-                    returnFile={(file) => this.setState({ file2: file })}
                     returnName={(name) => this.setState({ company2: name })}
                   />
                   <p className='text-center'>{this.state.company2}</p>
@@ -75,7 +70,6 @@ class App extends Component {
                 <div className='col-xs-4' style={{ padding: 0, paddingLeft: 5, transform: 'skewY(16deg)', transformOrigin: '0% 50%' }}>
                   <ImageInput
                     id='imageInput3'
-                    returnFile={(file) => this.setState({ file3: file })}
                     returnName={(name) => this.setState({ company3: name })}
                   />
                   <p className='text-center'>{this.state.company3}</p>
