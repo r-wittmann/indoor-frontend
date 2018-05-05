@@ -16,7 +16,7 @@ const convertResponseToJson = (response) => response.json()
 
 const baseUrl = process.env.NODE_ENV === 'development'
   ? 'http://localhost:8080/api/'
-  : 'https://indoornav.cfapps.io/api/'
+  : 'https://indoor-nav-backend.cfapps.io/api/'
 
 //
 // BackendService
