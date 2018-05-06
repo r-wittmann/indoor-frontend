@@ -38,7 +38,7 @@ class BackendService {
   }
 
   static getCompanyPrediction (image) {
-    return fetch('https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/5dd5e486-287b-4d29-a385-7f66fd2b6842/image?iterationId=c07e8f2b-fe8d-4281-b05a-b4581bcb9354',
+    return fetch('https://southcentralus.api.cognitive.microsoft.com/customvision/v1.1/Prediction/5dd5e486-287b-4d29-a385-7f66fd2b6842/image?iterationId=ff032ed4-b6d8-42a7-82fb-769f7f5cf3bd',
       {method: 'POST',
         headers:
         { 'content-type': 'application/octet-stream',
